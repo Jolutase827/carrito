@@ -21,9 +21,10 @@ class CarritoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(['mensaje' => 'Accediendo a index']);
+        $carrito = Carrito::get()->where('usuario_id',$request->usuario_id);
+        return response()->json($carrito);
     }
 
     /**
@@ -37,22 +38,12 @@ class CarritoController extends Controller
         $carrito = new Carrito();
         $carrito->cantidad = $request->cantidad;
         $carrito->precio =  $request->precio;
-        $carrito->id_producto = $request->id_producto;
-        $carrito->id_usuario = $request->id_usuario;
+        $carrito->producto_id = $request->producto_id;
+        $carrito->usuario_id = $request->usuario_id;
         $carrito->save();
         return response()->json(['mensaje' => 'Insertando'], 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return response()->json(['mensaje' => 'Ficha de ' . $id]);
-    }
 
     /**
      * Update the specified resource in storage.

@@ -17,8 +17,8 @@ class CreateCarritosTable extends Migration
             $table->id();
             $table->integer('cantidad');
             $table->float('precio');
-            $table->integer('id_producto');
-            $table->integer('id_usuario');
+            $table->integer('producto_id');
+            $table->integer('usuario_id');
             $table->timestamps();
         });
     }
