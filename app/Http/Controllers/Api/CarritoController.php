@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Carrito;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -33,6 +34,12 @@ class CarritoController extends Controller
      */
     public function store(Request $request)
     {
+        $carrito = new Carrito();
+        $carrito->cantidad = $request->cantidad;
+        $carrito->precio =  $request->precio;
+        $carrito->id_producto = $request->id_producto;
+        $carrito->id_usuario = $request->id_usuario;
+        $carrito->save();
         return response()->json(['mensaje' => 'Insertando'], 201);
     }
 
@@ -68,7 +75,7 @@ class CarritoController extends Controller
     public function destroy(Request $request,$id)
     {
         if($request->id_usuario){
-            
+
         }else{
 
         }
